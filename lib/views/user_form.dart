@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:lista/models/user.dart';
@@ -8,17 +9,17 @@ class UserForm extends StatelessWidget {
   final Map<String, String> _formData = {};
 
   void _loadFormData(User user){
-    _formData['id'] = user.id;
-    _formData['name'] = user.name;
-    _formData['email'] = user.email;
-    _formData['avatarUrl'] = user.avatarUrl;
+      _formData['id'] = user.id ?? '';
+      _formData['name'] = user.name;
+      _formData['email'] = user.email;
+      _formData['avatarUrl'] = user.avatarUrl;
   }
 
   UserForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final user = ModalRoute.of(context)?.settings.arguments as User;
+    final user = ModalRoute.of(context)?.settings.arguments as User? ?? const User(id: '', name: '', email: '', avatarUrl: '');
 
     _loadFormData(user);
 

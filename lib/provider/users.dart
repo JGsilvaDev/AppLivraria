@@ -20,21 +20,18 @@ class Users with ChangeNotifier{
   }
 
   void put(User user){
-    if(user == null){
+    if(user.id == null){
       return;
     }
 
     //alterar
-    if(user.id.trim().isNotEmpty && _items.containsKey(user.id)){
-      _items.update(user.id, 
-        (value) => User(
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          avatarUrl: user.avatarUrl 
-        )
-      );
-
+    if (user.id != null && user.id!.trim().isNotEmpty && _items.containsKey(user.id)) {
+      _items.update(user.id!, (value) => User(
+        id: user.id!,
+        name: user.name,
+        email: user.email,
+        avatarUrl: user.avatarUrl 
+      ));
     }else{
       //adicionar
       final id = Random().nextDouble().toString();
